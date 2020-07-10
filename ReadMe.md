@@ -1,0 +1,7 @@
+﻿1. Download it.
+
+2. cd into it
+
+3. run pip3 install -r requirements.txt
+
+4. python hangman.py    and go crazy.
