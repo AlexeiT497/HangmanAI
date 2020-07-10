@@ -123,10 +123,16 @@ def raw_candidates():
 def check_if_won():
     global previous_best_char
     global best_char
+    global show_list
     if len(candidates) == 1 or best_char in previous_best_char:
-        print("This is your word: ", candidates[0])
+        try:
+            print("This is your word: ", candidates[0])
+            return True
+        except Exception as e:
+            pass
+    elif "_" not in show_list and "".join(show_list) not in word_list:
+        print("You cannot trick me, you fool. The word doesn't exist!")
         return True
-    previous_best_char.append(best_char)
 
 for i in range(number_of_attempts):
     char_position = []
@@ -136,7 +142,8 @@ for i in range(number_of_attempts):
 
     for i in range(times_appeared):
         char_position.append(int(input("Where is it located (e.g. first letter is 1): ")))
-
     delete_from_candidates()
     raw_candidates()
     show_user()
+    if check_if_won(): break
+    previous_best_char.append(best_char)
