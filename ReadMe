@@ -1,0 +1,213 @@
+----------------------------Required Prerequisites:----------------------------------
+
+		Windows or Mac Computer 
+		Reasonably Fast / Consistent Wifi
+		Functioning Robinhood Account
+		Robinhood Account must be margin (not cash)
+		
+			- No daytrade ban
+			- Day trades are at 0
+		
+		
+----------------------------Recommended Prerequisites:-------------------------------
+
+		Robinhood account has 2 factor authentication.
+
+---------------------------General Info ---------------------------------------------
+
+        Any text in the Terminal / Command Prompt Program that is white is good, red
+	text are usually errors. If red text appears: end process, take screenshot, and
+	send to Alexei. 
+
+	All commands in this document are separated with distinct spacing. 
+	Type them EXACTLY as provided only modifying if specified. Same thing goes for the
+	prompts in the command area. It is case sensetive and type exactly as instructed.
+
+	Setup instruction assume user has no programming experience.
+	
+	If you would like to terminate a command, press control - c. This, however, doesn't
+	end the main program once it has began, instead the program continues, but the command
+	program lets you type new commands.
+	
+	When you answer a prompt or run a command, pressing enter essentially "begins" the process,
+	if you don't press enter, similar to how you send a message to someone.
+	
+	All times listed in the tutorial are listed in US Eastern Time, (time in New York where 
+	the markets the program trades on are located). Depending on your location, you can expect
+	the program to run at different parts of the day, i.e. US Pacific Time --> program begins
+	at 6:00 a.m. and ends at 8:30 a.m.
+	
+	Preferred method of Contact: alexei.tryshev@gmail.com
+
+
+---------------------------Security---------------------------------------------
+
+	The program prompts for the Email and Password. The Email and Password
+are stored in an encrypted CSV file. This makes the process more secure. Life is just better
+if you have 2 Factor Authentication.
+
+	It is worthy to mention that the program will on occasion lose money, and this should be expected as there
+is always risk involved in the stock market. I am no way responsible for any loss of money. If there has
+been a consistent trend in a loss of money, please contact me for investigation.
+
+--------------------------- Setup ---------------------------------------------------
+
+
+1. Go to https://git-scm.com/download/win (will start download immediately) and download the latest version of “Git”.
+	a. If mac →   https://git-scm.com/download/win
+	
+2. Installation for Windows:
+	-Leave everything else as default except: 
+	-Choose this C:\Program Files\Git
+	-Choose the "Use native secure file ... "
+	-Also check "Use Windows Default console window" 
+	
+
+2. Go to https://heroku.com/ and sign up for a free account.
+
+3.  Go to https://devcenter.heroku.com/articles/getting-started-with-python#set-up and download the 
+appropriate version of the Heroku CLI.
+
+4. Instllation for Heroku for Windows:
+	-Leave everything as default except: 
+	-directory: C:\Program Files(x86)\heroku
+
+4. Open “Command Prompt Program” (press control - shift - esc. Click run
+new task, and type in "cmd" (no quotations), select run with administrative
+ privileges and press enter) on your computer  if you have Windows. For Mac 
+open “Terminal” app.
+
+5. In your command area run   git config --global user.name "Bob Random"   Where Bob Random would be replaced with the username bound to your 
+computer. Keep quotation marks when running this command.)
+
+6. Run this command   git config --global user.email “bobrandom@gmail.com"   (Where the email address is replaced with your preferred email. 
+Keep quotation marks when typing command)
+
+7. Run this command   heroku login   (or      heroku login -i      if that doesn't work). Next, press any key and this will open a 
+browser tab. If you ran the second command, you will login in the command area.
+
+8. If it says heroku isn't a valid command (usually a problem with Windows), roceed to locate the Heroku application in your
+file explorer, right click --> Preferences at the top there should be a tab with "Compatability" and check mark where it says
+“Run with compatibility...”. Return to command area and rerun      heroku login  
+
+
+9. Next you will create a heroku app, type in the following commands one by one and press enter after each. (replace appname 
+with you actual appname)
+
+	heroku create appname     ( in this scenario appname is replaced with the preferred name, Heroku may not accept the
+	provided name. In this case, rerun the command with a different appname satisfying the requirements.)
+	
+	mkdir appname     (for Windows) or sudo mkdir appname (for Mac)
+	
+	cd appname
+	
+	git init	
+
+10. Run the command    python    in the Terminal and press enter. If there are 3 consecutive right arrows and the version 
+is greater than 2.7, skip step 4 and 5, close the terminal and open it back up. Next type cd appname into the Command area 
+and press enter.
+
+11. If you determined that your version of python is lower than 3, the next step is still needed
+And type     python3     in all following commands that feature python. 
+
+12. If you are met with an error from the previous step, follow the Python installation tutorial:
+	a. Go to https://www.python.org/downloads/ and download Python 3.8.2 (not the most recent version). 
+	
+	b. Open the Launcher inside of the download Folder (should be an .exe file type
+	or .dmg for Mac.). 
+	c. Right click the installer and run as administrator. then select these options:
+		-add python 3.8.2 to PATH
+		-customize installation
+		-associate files with python (check this)
+		-Make sure you install Python to C:\Program Files (x86)\Python\Python32\
+	
+
+13. Proceed to find the app in the File Explorer (or Finder) and transfer it over to the last possible 
+subfolder of the Python installation. When you move it, it might say that it can't because the folder is open. If so,
+close the command program and try transferring again. The directory should end up looking something like 
+this: .../.../Python/Python32/app_name
+
+14. Return to the Terminal / Command Prompt Program (control - shift - e then run new task with cmd and adminstratitve rights,
+like before if you have Windows).
+
+15. Run       git remote add heroku https://git.heroku.com/appname.git       (where appname is replaced with your real
+appname)
+
+16. Run this command          git clone https://github.com/AlexeiT497/StockProgram.git
+
+17. Switch from Command area to the files area, find your application folder (search for the name of your application).
+
+18. Inside, there should be a sub-folder called, "StockProgram", it contains around 25 files. 
+Transfer everything from the StockProgram folder into the outer application folder. 
+
+19. The StockProgram folder should be empty, and everything should be in the outer application folder. 
+You may delete the StockProgram folder.
+
+20. Run this command      pip3 install -r requirements.txt 
+	- if that command did not work try        pip install -r requirements.txt
+
+21. Run     python preferences.py     and answer the prompts, be careful to enter info correctly. If you made a mistake, 
+press control - c and rerun         python preferences.py       .
+	- For the fraction prompt enter as a number between 1 and 0, 1 being 100% of the account. For example, if you had
+	$50 in stocks and $50 in cash, the max digit you may enter is 0.5, anything larger would overlap with non-usable stock
+	cash.
+	
+	- For the fraction secontion, I would recommend only investing $10 on the first day just to check the program.
+	After you are confident to inveset more, rerun       python preferences.py       to change your preferences.
+
+22. 
+	a. Run     python Authentication.py 
+	b. Probably, it will prompt you for some sort of code on the first run. Enter that code (try no spaces first for the code, 
+	if it doesn't work, do it with spaces) and press enter. 
+
+23. Finally, you are ready to start the application. Enter   python begin.py   and press enter. This will run several commands.
+	
+24. After this, it should open a new Chrome tab with an error message. Not a real error message, and close it.
+
+25. The program should be working. It will continue to work even if you turn off computer.
+II would recommend to keep the Terminal / cmd.exe with the program open if you would like to enter commands.
+
+26. To end the program run     python end.py      .
+
+----------------------------------General Usage---------------------------------------------------------
+
+1. During the evening, run    python Authentication.py     and if it runs with no prompts, cool. If it does prompt, 
+enter code. Additionally run       heroku login      (or     heroku login -i      ) and re-run     python begin.py     . 
+
+2. From here on, the program will always be on (unless you enter     python end.py     ). Usually the program will display 
+something like  "16:55 Will continue checking...", every 20 seconds. Even if the time logged doesn't match the time in your 
+location this is normal, ignore it.
+ 
+ 3. If the program displays something like "
+2020-05-14T13:30:16.917543+00:00 app[worker.1]: login = r.login(email, password)
+2020-05-14T13:30:16.917548+00:00 app[worker.1]: File "/app/robin_stocks/authentication.py", line 124, in login
+2020-05-14T13:30:16.917707+00:00 app[worker.1]: EOFError: EOF when reading a line" . Then press control - c.
+Run        python Authentication.py       . Then answer the 2 factor authentication prompt. Then run     python begin.py    .
+When this happens, it will not buy any stocks today.
+
+4. The program will buy stocks from 9:30 a.m. to around 10:30 a.m. (US Eastern Time). You can expect that it will buy
+1 day trade stock (beginning from 9:31 a.m.), and 1:30 hours later is will buy 3 (1/3 of the budget for each) 
+full-day stock (it will sell this the next day) at 9:00, don't worry it takes  Pattern Day Trade rule into account. 
+The program will still buy full-day stocks even if the account is out of day trades.  If the program
+does anything strange (e.g. not buy something, or weird code-like errors), press control c and run     python end.py    . 
+This will end the process. Take a screenshot and send it to me for investiagtion.
+
+5. Because of how the program works, all pending order submitted by user (not the program), will probably be cancelled, so 
+watch out with your order between 9:00 and 10:30 a.m.
+
+6. When buying, the program may submit a buy order, cancel order, and buy again, this is normal.
+
+7. Everyday, after 10:30 a.m. , run this command    python updatecsv.py   ( or     python UpdateCSV.py      if other doesn't
+work). This is very important because it will regulate your day trades. It will also prompt you to enter the full day stock 
+that the program bought.
+
+8. Also rerun the program by after updating csv by entering this command       python begin.py      .
+
+9. When the program decides which stock to buy, it might display something like "Robinhood Client Error: ...", this is 
+normal and it is not a real error.
+
+10. You make look around through the files, however, it is not recommended to edit anything, this may result in a catastrophic 
+failure.
+
+11. If you would like to change preferences, rerun           python preferences.py              and also rerun 
+      python begin.py                      in order to restart the application with new information.
