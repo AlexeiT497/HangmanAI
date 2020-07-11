@@ -5,3 +5,7 @@
 3. run pip3 install -r requirements.txt
 
 4. python hangman.py    and go crazy.
+
+Big thanks https://github.com/first20hours/google-10000-english
+or the 20k txt file, all credit this this user for that
+file.
