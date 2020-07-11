@@ -7,5 +7,5 @@
 4. python hangman.py    and go crazy.
 
 Big thanks https://github.com/first20hours/google-10000-english
-or the 20k txt file, all credit this this user for that
+or the 20k txt file, all credit to this user for that
 file.
