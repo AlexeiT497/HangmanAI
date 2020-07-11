@@ -11,8 +11,23 @@ best_char = " "
 previous_best_char = []
 char_position = []
 show_list = []
+common_word_list = []
+
 
 alphabet = string.ascii_lowercase
+
+def make_common_list():
+    global common_word_list
+    temp_list = []
+    f = open("20k.txt", 'r')
+    for i in f.read():
+        if i in alphabet:
+            temp_list.append(i)
+        else:
+            common_word_list.append("".join(temp_list))
+            temp_list = []
+
+make_common_list()
 
 def alpha_dict():
     global letters_dict
@@ -21,6 +36,7 @@ def alpha_dict():
     letters_dict.__setitem__('`', -1)
 
 alpha_dict()
+
 
 
 number_of_letters = int(input("How many letters are in your word?: "))
@@ -39,6 +55,19 @@ def show_user():
     update_show_list()
     print("  ".join(show_list))
 
+def check_for_best_word():
+    global candidates
+    global common_word_list
+
+    for i in range(len(common_word_list)):
+        for j in range(len(candidates)):
+            if common_word_list[i] == candidates[j]:
+                if str(input("Is this your word: " + candidates[j] + "? ")) == "No":
+                    candidates[j] = "`"
+                    return "No"
+                else:
+                    return "Yes"
+
 def check_for_best_char():
     global number_of_letters
     global candidates
@@ -51,7 +80,10 @@ def check_for_best_char():
 
     for j in candidates:
         for k in j:
-            letters_dict[k.lower()] = letters_dict[k.lower()] + 1
+            try:
+                letters_dict[k.lower()] = letters_dict[k.lower()] + 1
+            except Exception as e:
+                pass
 
     for i in alphabet:
         if letters_dict[i] > best_number and i not in previous_best_char:
@@ -124,7 +156,7 @@ def check_if_won():
     global previous_best_char
     global best_char
     global show_list
-    if len(candidates) == 1 or best_char in previous_best_char:
+    if len(candidates) == 1:
         try:
             print("This is your word: ", candidates[0])
             return True
@@ -136,7 +168,11 @@ def check_if_won():
 
 for i in range(number_of_attempts):
     char_position = []
-    check_for_best_char()
+    if len(candidates) <= 50:
+        if (check_for_best_word()) == "Yes":
+            break
+    else:
+        check_for_best_char()
     if check_if_won(): break
     times_appeared = int(input("How many times does " + best_char + " appear?: "))
 
