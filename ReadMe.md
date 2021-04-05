@@ -1,4 +1,7 @@
-﻿1. Download it.
+Want to see a demo?: https://youtu.be/cmwLPNF0amQ
+
+Instructions on setup:
+ 1. Download it.
 
 2. cd into it
 
